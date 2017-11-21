@@ -8,7 +8,7 @@ if (!isset($_GET['code'])) {
     // Fetch the authorization URL from the provider; this returns the
     // urlAuthorize option and generates and applies any necessary parameters
     // (e.g. state).
-    $authorizationUrl = $provider->getAuthorizationUrl(['scope'=>['esi-mail.send_mail.v1', 'esi-corporations.read_corporation_membership.v1','esi-contracts.read_character_contracts.v1']]);
+    $authorizationUrl = $provider->getAuthorizationUrl(['scope'=>$scopes]);
 
     // Get the state generated for you and store it to the session.
     $_SESSION['oauth2state'] = $provider->getState();
@@ -41,20 +41,23 @@ if (!isset($_GET['code'])) {
         echo "Login successful for the character ".$resourceOwner->toArray()["CharacterName"]."(".$resourceOwner->toArray()["CharacterID"].")<br>You will be automatically redirected.....";
 
         //save accessToken and char info in session.
-        $_SESSION['accesstoken-obj']=serialize($accessToken);
+        $_SESSION['token-object']=serialize($accessToken);
         $_SESSION['charinfo']=$resourceOwner->toArray();
 
-        $config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken(unserialize($_SESSION['accesstoken-obj'])->getToken());
+        $config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken(unserialize($_SESSION['token-object'])->getToken());
 
         //save corp info
-        $api_corporation = new Swagger\Client\Api\CorporationApi();
+        $api_char = new Swagger\Client\Api\CharacterApi();
+        $api_corp = new Swagger\Client\Api\CorporationApi();
 
-        $corp=$api_corporation->getCorporationsNames(corpid($_SESSION['charinfo']['CharacterID']), $datasource);
+        try {
+            $corp_id=$api_char->getCharactersCharacterId($_SESSION['charinfo']['CharacterID'])['corporation_id'];
+            $_SESSION['charinfo']['CorporationID']=$corp_id;
 
-        $_SESSION['charinfo']['corpid']=$corp[0]['corporation_id'];
-        $_SESSION['charinfo']['corpname']=$corp[0]['corporation_name'];
-
-
+            $_SESSION['charinfo']['CorporationName']=$api_corp->getCorporationsNames($corp_id, $datasource)[0]['corporation_name'];
+        } catch (Exception $e) {
+            echo 'Exception: ', $e->getMessage(), PHP_EOL;
+        }
 
     } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
 

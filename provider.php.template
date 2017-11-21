@@ -1,5 +1,7 @@
 <?php
 
+$scopes=[];//array with desired scopes
+
 $provider = new \League\OAuth2\Client\Provider\GenericProvider([
     'clientId'                => '',	// The client ID assigned to you by the provider
     'clientSecret'            => '',	// The client password assigned to you by the provider

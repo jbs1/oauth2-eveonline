@@ -10,6 +10,6 @@ require_once('oauth-func.php');
 
 $datasource = "tranquility"; // string | The server name you would like data from
 
-token_refresh();
+refresh_token();
 
 ?>

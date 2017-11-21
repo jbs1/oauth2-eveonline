@@ -1,10 +1,10 @@
 <?php
 require_once('header.php');
 
-if(empty($_SESSION['accesstoken-obj'])){//if not logged in redirect to
+if(empty($_SESSION['token-object'])){//if not logged in redirect to
 	header('Location: oauth.php');
 } else {
-	token_refresh();
+	refresh_token();
 
 echo '<!DOCTYPE html>
 <html>
@@ -16,7 +16,10 @@ echo '<title>EVE-SSO</title>
 </head>
 <body>';
 
-echo 'EVE-SSO';
+echo '
+<p>EVE-SSO</p>
+<p><a href="ses-info.php">Click here to check saved session info</a></p>
+';
 
 
 echo '</body>
