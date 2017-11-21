@@ -1,0 +1,12 @@
+<?php
+
+$provider = new \League\OAuth2\Client\Provider\GenericProvider([
+    'clientId'                => '',	// The client ID assigned to you by the provider
+    'clientSecret'            => '',	// The client password assigned to you by the provider
+    'redirectUri'             => '<...>/oauth.php',	// Location of oauth.php
+    'urlAuthorize'            => 'https://login.eveonline.com/oauth/authorize',
+    'urlAccessToken'          => 'https://login.eveonline.com/oauth/token',
+    'urlResourceOwnerDetails' => 'https://login.eveonline.com/oauth/verify',
+    'scopeSeparator'=>' '
+]);
+?>
