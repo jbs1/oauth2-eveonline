@@ -17,7 +17,7 @@ Then you can either work directly in the sso dir or you copy the index.php to yo
 export webdir=<path to webdir>
 export ssodir=<path to sso-repo dir>
 cp $ssodir/index.php $webdir
-ln -vsf $ssodir/header.php $webdir
+ln -vsf $ssodir/oauth-header.php $webdir
 ln -vsf $ssodir/oauth.php $webdir
 ln -vsf $ssodir/oauth-func.php $webdir
 ln -vsf $ssodir/ses-info.php $webdir

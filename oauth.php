@@ -1,5 +1,5 @@
 <?php
-require_once('header.php');
+require_once('oauth-header.php');
 
 
 // If we don't have an authorization code then get one
