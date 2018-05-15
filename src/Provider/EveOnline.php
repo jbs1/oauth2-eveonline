@@ -1,5 +1,5 @@
 <?php
-namespace jbs1\OAauth2\Client\Provider;
+namespace jbs1\OAuth2\Client\Provider;
 
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;

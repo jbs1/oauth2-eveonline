@@ -6,25 +6,27 @@
 
 Add this to your composer.json:
 ```
-"repositories":[
-	{
-		"type": "git",
-		"url": "https://github.com/jbs1/oauth2-eveonline.git"
-	}
-],
-"require": {
-    "jbs1/oauth2-eveonline": "*@dev",
-},
+{
+    "repositories":[
+    {
+        "type": "git",
+        "url": "https://github.com/jbs1/oauth2-eveonline.git"
+    }
+    ],
+    "require": {
+        "jbs1/oauth2-eveonline": "*@dev"
+    }
+}
 ```
 
 ## How to Use
-The usage is the same as with the generic provider from the PHPleague's client, just with a `jbs1\OAauth2\Client\Provider\EveOnline` provider.
+The usage is the same as with the generic provider from the PHPleague's client, just with a `jbs1\OAuth2\Client\Provider\EveOnline` provider.
 
 
 ### Authorization Code Flow
 
 ```
-$provider = new jbs1\OAauth2\Client\Provider\EveOnline([
+$provider = new jbs1\OAuth2\Client\Provider\EveOnline([
     'clientId'                => 'demoapp',    // The client ID assigned to you by the provider
     'clientSecret'            => 'demopass',   // The client password assigned to you by the provider
     'redirectUri'             => 'http://example.com/your-redirect-url/',
