@@ -18,6 +18,8 @@ Add this to your composer.json:
     }
 }
 ```
+Do not forget to add `require_once(__DIR__ . '/vendor/autoload.php');` to the needed files to use the library.
+
 
 ## How to Use
 The usage is the same as with the generic provider from the PHPleague's client, just with a `jbs1\OAuth2\Client\Provider\EveOnline` provider.
@@ -25,7 +27,7 @@ The usage is the same as with the generic provider from the PHPleague's client, 
 
 ### Authorization Code Flow
 
-```
+```php
 $provider = new jbs1\OAuth2\Client\Provider\EveOnline([
     'clientId'                => 'demoapp',    // The client ID assigned to you by the provider
     'clientSecret'            => 'demopass',   // The client password assigned to you by the provider
@@ -101,7 +103,7 @@ if (!isset($_GET['code'])) {
 
 ### Refresh Token
 
-```
+```php
 $provider = new \League\OAuth2\Client\Provider\GenericProvider([
     'clientId'                => 'demoapp',    // The client ID assigned to you by the provider
     'clientSecret'            => 'demopass',   // The client password assigned to you by the provider
@@ -122,15 +124,23 @@ if ($existingAccessToken->hasExpired()) {
 ### Scopes
 Replace the `$provider->getAuthorizationUrl()` with this and the required scopes:
 
+```php
+$scope = [
+    'esi-bla.somescope.v1',
+    'esi-bla.someotherscope.v1'
+]
+$authorizationUrl = $provider->getAuthorizationUrl(array("scope"=>$scope));
 ```
-$options = [
-    'scope' => ['esi-bla.somescope.v1','esi-bla.someotherscope.v1'] // array or string
-];
-$authorizationUrl = $provider->getAuthorizationUrl($options);
-```
 
-
-
+###  Resource Owner
+The following fields are available through get functions:
+* getCharacterID()
+* getCharacterName()
+* getCorporationID()
+* getCorporationName()
+* getScopes()
+* getTokenType()
+* getCharacterOwnerHash()
 
 
 
