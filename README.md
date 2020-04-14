@@ -1,5 +1,5 @@
 
-# EVE-srpmail
+# oauth2-EVEonline
 
 
 ## Installation
