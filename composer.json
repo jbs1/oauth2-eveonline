@@ -2,8 +2,7 @@
     "name": "jbs1/oauth2-eveonline",
     "description": "EVE Online OAuth 2 Client with extended ResourceOwner",
 	"require": {
-        "league/oauth2-client": "^2.2",
-        "guzzlehttp/guzzle": "~6.0"
+        "league/oauth2-client": "^2.2"
     },
     "autoload": {
     	"psr-4": {
